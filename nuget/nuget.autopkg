@@ -1,3 +1,11 @@
+configurations {
+        UserPlatformToolset {
+                // Needed because autopackage lacks VS2015+ support
+                key = "PlatformToolset";
+                choices: "v140,v141";
+        };
+}
+
 nuget{
 	nuspec{
 		id = cairo_static;
