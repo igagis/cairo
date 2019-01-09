@@ -1,7 +1,7 @@
 nuget{
 	nuspec{
 		id = cairo_static;
-		version : 1.15.4.1; //increase this trailing number if this file has changed to generate a new version of the NuGet package
+		version : 1.15.4.2; //increase this trailing number if this file has changed to generate a new version of the NuGet package
 		title: Cairo static library;
 		authors: {Cairo authors};
 		owners: {Ivan Gagis};
@@ -18,9 +18,9 @@ nuget{
 	}
 	dependencies {
 		packages : {
-			libpng/1.6.28.1;
-			zlib/1.2.8.8;
-			pixman_static/0.32.4.4;
+			libpng_native/1.6.30;
+			zlib_native/1.2.11;
+			pixman_static/0.32.4.5;
 		};
 	}
 	files {
@@ -29,20 +29,36 @@ nuget{
 			"..\COPKG\cairo\*.h";
 		};
 
-		[x86,release] {
-			lib: ..\msvs_solution\Release\cairo.lib;
+		[x86,v140,release] {
+				lib: ..\msvs_solution\v140_Release\cairo.lib;
 		}
 
-		[x86,debug] {
-			lib: ..\msvs_solution\Debug\cairo.lib;
+		[x86,v140,debug] {
+				lib: ..\msvs_solution\v140_Debug\cairo.lib;
 		}
 
-		[x64,release] {
-			lib: ..\msvs_solution\x64\Release\cairo.lib;
+		[x64,v140,release] {
+				lib: ..\msvs_solution\x64\v140_Release\cairo.lib;
 		}
 
-		[x64,debug] {
-			lib: ..\msvs_solution\x64\Debug\cairo.lib;
+		[x64,v140,debug] {
+				lib: ..\msvs_solution\x64\v140_Debug\cairo.lib;
+		}
+
+		[x86,v141,release] {
+				lib: ..\msvs_solution\v141_Release\cairo.lib;
+		}
+
+		[x86,v141,debug] {
+				lib: ..\msvs_solution\v141_Debug\cairo.lib;
+		}
+
+		[x64,v141,release] {
+				lib: ..\msvs_solution\x64\v141_Release\cairo.lib;
+		}
+
+		[x64,v141,debug] {
+				lib: ..\msvs_solution\x64\v141_Debug\cairo.lib;
 		}
 	}
 }
