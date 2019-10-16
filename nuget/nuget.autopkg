@@ -2,14 +2,19 @@ configurations {
         UserPlatformToolset {
                 // Needed because autopackage lacks VS2015+ support
                 key = "PlatformToolset";
-                choices: "v140,v141";
+                choices: "v140,v141,v142";
         };
+
+		RuntimeLibrary {
+			key = "RuntimeLibrary"; // This is the key you can find in .vcxproj file
+			choices: "MultiThreaded,MultiThreadedDebug,MultiThreadedDLL,MultiThreadedDebugDLL"; // these choices must be valid values for .vcxproj file
+		};
 }
 
 nuget{
 	nuspec{
 		id = cairo_static;
-		version : 1.15.4.2; //increase this trailing number if this file has changed to generate a new version of the NuGet package
+		version : 1.15.4.3; //increase this trailing number if this file has changed to generate a new version of the NuGet package
 		title: Cairo static library;
 		authors: {Cairo authors};
 		owners: {Ivan Gagis};
@@ -26,9 +31,9 @@ nuget{
 	}
 	dependencies {
 		packages : {
-			libpng_native/1.6.30;
-			zlib_native/1.2.11;
-			pixman_static/0.32.4.5;
+			libpng_static/1.4.1.2;
+			zlib_static/1.2.11.1;
+			pixman_static/0.32.4.6;
 		};
 	}
 	files {
@@ -37,36 +42,62 @@ nuget{
 			"..\COPKG\cairo\*.h";
 		};
 
+		//==== v140 tools ====
+
 		[x86,v140,release] {
 				lib: ..\msvs_solution\v140_Release\cairo.lib;
 		}
-
 		[x86,v140,debug] {
 				lib: ..\msvs_solution\v140_Debug\cairo.lib;
 		}
-
 		[x64,v140,release] {
 				lib: ..\msvs_solution\x64\v140_Release\cairo.lib;
 		}
-
 		[x64,v140,debug] {
 				lib: ..\msvs_solution\x64\v140_Debug\cairo.lib;
 		}
 
+		//==== v141 tools ====
+
 		[x86,v141,release] {
 				lib: ..\msvs_solution\v141_Release\cairo.lib;
 		}
-
 		[x86,v141,debug] {
 				lib: ..\msvs_solution\v141_Debug\cairo.lib;
 		}
-
 		[x64,v141,release] {
 				lib: ..\msvs_solution\x64\v141_Release\cairo.lib;
 		}
-
 		[x64,v141,debug] {
 				lib: ..\msvs_solution\x64\v141_Debug\cairo.lib;
 		}
+
+		//==== v142 tools ====
+
+		[x86,v142,release,MultiThreaded] {
+			lib: ..\msvs_solution\v142_Release_MT\libpng.lib;
+		}
+		[x86,v142,debug,MultiThreadedDebug] {
+			lib: ..\msvs_solution\v142_Debug_MT\libpng.lib;
+		}
+		[x64,v142,release,MultiThreaded] {
+			lib: ..\msvs_solution\x64\v142_Release_MT\libpng.lib;
+		}
+		[x64,v142,debug,MultiThreadedDebug] {
+			lib: ..\msvs_solution\x64\v142_Debug_MT\libpng.lib;
+		}
+		[x86,v142,release,MultiThreadedDLL] {
+			lib: ..\msvs_solution\v142_Release_MD\libpng.lib;
+		}
+		[x86,v142,debug,MultiThreadedDebugDLL] {
+			lib: ..\msvs_solution\v142_Debug_MD\libpng.lib;
+		}
+		[x64,v142,release,MultiThreadedDLL] {
+			lib: ..\msvs_solution\x64\v142_Release_MD\libpng.lib;
+		}
+		[x64,v142,debug,MultiThreadedDebugDLL] {
+			lib: ..\msvs_solution\x64\v142_Debug_MD\libpng.lib;
+		}
+
 	}
 }
