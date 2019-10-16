@@ -14,7 +14,7 @@ configurations {
 nuget{
 	nuspec{
 		id = cairo_static;
-		version : 1.15.4.3; //increase this trailing number if this file has changed to generate a new version of the NuGet package
+		version : 1.15.4.4; //increase this trailing number if this file has changed to generate a new version of the NuGet package
 		title: Cairo static library;
 		authors: {Cairo authors};
 		owners: {Ivan Gagis};
@@ -75,28 +75,28 @@ nuget{
 		//==== v142 tools ====
 
 		[x86,v142,release,MultiThreaded] {
-			lib: ..\msvs_solution\v142_Release_MT\libpng.lib;
+			lib: ..\msvs_solution\v142_Release_MT\cairo.lib;
 		}
 		[x86,v142,debug,MultiThreadedDebug] {
-			lib: ..\msvs_solution\v142_Debug_MT\libpng.lib;
+			lib: ..\msvs_solution\v142_Debug_MT\cairo.lib;
 		}
 		[x64,v142,release,MultiThreaded] {
-			lib: ..\msvs_solution\x64\v142_Release_MT\libpng.lib;
+			lib: ..\msvs_solution\x64\v142_Release_MT\cairo.lib;
 		}
 		[x64,v142,debug,MultiThreadedDebug] {
-			lib: ..\msvs_solution\x64\v142_Debug_MT\libpng.lib;
+			lib: ..\msvs_solution\x64\v142_Debug_MT\cairo.lib;
 		}
 		[x86,v142,release,MultiThreadedDLL] {
-			lib: ..\msvs_solution\v142_Release_MD\libpng.lib;
+			lib: ..\msvs_solution\v142_Release_MD\cairo.lib;
 		}
 		[x86,v142,debug,MultiThreadedDebugDLL] {
-			lib: ..\msvs_solution\v142_Debug_MD\libpng.lib;
+			lib: ..\msvs_solution\v142_Debug_MD\cairo.lib;
 		}
 		[x64,v142,release,MultiThreadedDLL] {
-			lib: ..\msvs_solution\x64\v142_Release_MD\libpng.lib;
+			lib: ..\msvs_solution\x64\v142_Release_MD\cairo.lib;
 		}
 		[x64,v142,debug,MultiThreadedDebugDLL] {
-			lib: ..\msvs_solution\x64\v142_Debug_MD\libpng.lib;
+			lib: ..\msvs_solution\x64\v142_Debug_MD\cairo.lib;
 		}
 
 	}
