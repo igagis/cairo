@@ -114,6 +114,7 @@
 		2C9EFF7723673627009E8EDA /* cairo-gstate.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EFF0C23673627009E8EDA /* cairo-gstate.c */; };
 		2C9EFF7823673627009E8EDA /* cairo-device.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EFF0D23673627009E8EDA /* cairo-device.c */; };
 		2C9EFF7923673627009E8EDA /* cairo-path-stroke.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C9EFF0E23673627009E8EDA /* cairo-path-stroke.c */; };
+		ABB6622C74F1A3D0593A8DC9 /* libPods-cairo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0EC2A3D2407523B9F2418EA /* libPods-cairo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -129,6 +130,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		007BEF96677CEA81C3E34AA8 /* Pods-cairo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cairo.release.xcconfig"; path = "Target Support Files/Pods-cairo/Pods-cairo.release.xcconfig"; sourceTree = "<group>"; };
 		2C9EFE9823673362009E8EDA /* libcairo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libcairo.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C9EFEA423673621009E8EDA /* cairo-region.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "cairo-region.c"; path = "../../../src/cairo-region.c"; sourceTree = "<group>"; };
 		2C9EFEA523673621009E8EDA /* cairo-rtree.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "cairo-rtree.c"; path = "../../../src/cairo-rtree.c"; sourceTree = "<group>"; };
@@ -237,6 +239,8 @@
 		2C9EFF0C23673627009E8EDA /* cairo-gstate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "cairo-gstate.c"; path = "../../../src/cairo-gstate.c"; sourceTree = "<group>"; };
 		2C9EFF0D23673627009E8EDA /* cairo-device.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "cairo-device.c"; path = "../../../src/cairo-device.c"; sourceTree = "<group>"; };
 		2C9EFF0E23673627009E8EDA /* cairo-path-stroke.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "cairo-path-stroke.c"; path = "../../../src/cairo-path-stroke.c"; sourceTree = "<group>"; };
+		A0EC2A3D2407523B9F2418EA /* libPods-cairo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-cairo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C45DFB5F6DAA93B2AEE380DC /* Pods-cairo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cairo.debug.xcconfig"; path = "Target Support Files/Pods-cairo/Pods-cairo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +248,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABB6622C74F1A3D0593A8DC9 /* libPods-cairo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +260,8 @@
 			children = (
 				2C9EFE9A23673362009E8EDA /* cairo */,
 				2C9EFE9923673362009E8EDA /* Products */,
+				792909BB1FBB5F91579BBB04 /* Pods */,
+				A01ED50B655EE99AC51FBC80 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -380,6 +387,24 @@
 			path = cairo;
 			sourceTree = "<group>";
 		};
+		792909BB1FBB5F91579BBB04 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C45DFB5F6DAA93B2AEE380DC /* Pods-cairo.debug.xcconfig */,
+				007BEF96677CEA81C3E34AA8 /* Pods-cairo.release.xcconfig */,
+			);
+			name = Pods;
+			path = ../Pods;
+			sourceTree = "<group>";
+		};
+		A01ED50B655EE99AC51FBC80 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A0EC2A3D2407523B9F2418EA /* libPods-cairo.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -387,6 +412,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C9EFEA123673362009E8EDA /* Build configuration list for PBXNativeTarget "cairo" */;
 			buildPhases = (
+				2EFC3DE117EE546255D5F5CC /* [CP] Check Pods Manifest.lock */,
 				2C9EFE9423673362009E8EDA /* Sources */,
 				2C9EFE9523673362009E8EDA /* Frameworks */,
 				2C9EFE9623673362009E8EDA /* CopyFiles */,
@@ -431,6 +457,31 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2EFC3DE117EE546255D5F5CC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-cairo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2C9EFE9423673362009E8EDA /* Sources */ = {
@@ -662,8 +713,22 @@
 		};
 		2C9EFEA223673362009E8EDA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C45DFB5F6DAA93B2AEE380DC /* Pods-cairo.debug.xcconfig */;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_ENABLE_MODULES = NO;
 				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					HAVE_UINT64_T,
+					HAVE_STDINT_H,
+					"CAIRO_NO_MUTEX=1",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					../../COPKG/cairo,
+					"$(inherited)",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -675,8 +740,22 @@
 		};
 		2C9EFEA323673362009E8EDA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 007BEF96677CEA81C3E34AA8 /* Pods-cairo.release.xcconfig */;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_ENABLE_MODULES = NO;
 				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					HAVE_UINT64_T,
+					HAVE_STDINT_H,
+					"CAIRO_NO_MUTEX=1",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					../../COPKG/cairo,
+					"$(inherited)",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
