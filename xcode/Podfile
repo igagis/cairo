@@ -1,0 +1,9 @@
+source 'https://github.com/igagis/cocoapods-repo.git'
+
+project 'cairo/cairo.xcodeproj'
+
+platform :ios, '8.0'
+
+target "cairo" do
+	pod 'pixman', '>= 0.32.4.1'
+end
