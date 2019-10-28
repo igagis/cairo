@@ -1,8 +1,0 @@
-xcodeproj 'tests.xcodeproj'
-
-source 'https://github.com/CocoaPods/Specs.git'
-source 'https://github.com/igagis/cocoapods-repo.git'
-
-pod 'libpixman', '>= 0.32.4'
-pod 'libutki', '>= 1.0.9'
-pod 'libsvgdom', '>= 0.2.2'
