@@ -1,212 +1,41 @@
-apply plugin: "com.android.model.library"
+apply plugin: 'com.android.library'
 
+android {
+    compileSdkVersion 28
 
-model {
-    android {
-        compileSdkVersion = 25
-        buildToolsVersion = '25.0.2'
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
 
-        defaultConfig {
-            minSdkVersion.apiLevel = 9
-            targetSdkVersion.apiLevel = 9
-            versionCode = 1
-            versionName = '1.0'
-        }
-        ndk {
-            platformVersion = 21
-            moduleName = "cairo"
-            //toolchain = 'clang'
-            abiFilters.addAll(['armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64', 'mips', 'mips64']) //this is default
-            ldLibs.addAll(['android', 'log', 'pixman'])
-            stl = 'c++_static'
-            cppFlags.add("-std=c++11")
-            cppFlags.add("-fexceptions")
-            cppFlags.add("-frtti")
-            CFlags.addAll("-DCAIRO_NO_MUTEX=1", "-DHAVE_STDINT_H", "-DHAVE_UINT64_T")
-            CFlags.add("-I" + projectDir.getAbsolutePath() + "/../../COPKG/cairo")
-            CFlags.add("-I" + projectDir.getAbsolutePath() + "/build/ndkLibs/include/pixman")
-            CFlags.add("-I" + projectDir.getAbsolutePath() + "/build/ndkLibs/include")
-            cppFlags.add("-I" + projectDir.getAbsolutePath() + "/build/ndkLibs/include")
-        }
-        abis {
-            create("armeabi") {
-                ldFlags.add("-L" + projectDir.getAbsolutePath() + "/build/ndkLibs/armeabi")
-            }
-            create("armeabi-v7a") {
-                ldFlags.add("-L" + projectDir.getAbsolutePath() + "/build/ndkLibs/armeabi-v7a")
-            }
-            create("arm64-v8a") {
-                ldFlags.add("-L" + projectDir.getAbsolutePath() + "/build/ndkLibs/arm64-v8a")
-            }
-            create("x86") {
-                ldFlags.add("-L" + projectDir.getAbsolutePath() + "/build/ndkLibs/x86")
-            }
-            create("x86_64") {
-                ldFlags.add("-L" + projectDir.getAbsolutePath() + "/build/ndkLibs/x86_64")
-            }
-            create("mips") {
-                ldFlags.add("-L" + projectDir.getAbsolutePath() + "/build/ndkLibs/mips")
-            }
-            create("mips64") {
-                ldFlags.add("-L" + projectDir.getAbsolutePath() + "/build/ndkLibs/mips64")
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        externalNativeBuild {
+            cmake {
+                targets "cairo"
             }
         }
     }
 
-    android.lintOptions {
-        abortOnError false
+    // This is needed to make the default dependency configuration to be 'debug' for the test app which references
+    // this module as in-project dependency. Because app searches for library to link against in debug directory.
+    defaultPublishConfig "debug"
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
     }
 
-    android.sources {
-        main {
-            jni {
-                exportedHeaders {
-                    srcDir "../../src/"
-                }
-                source {
-                    srcDir '../../src'
-                    exclude "**/cairo-cff-subset.c"
-                    exclude "**/cairo-cogl-*.c"
-                    exclude "**/cairo-deflate-system.c"
-                    exclude "**/cairo-directfb-*.c"
-                    exclude "**/cairo-egl-*.c"
-                    exclude "**/cairo-ft-font.c"
-                    exclude "**/cairo-gl-*.c"
-                    exclude "**/cairo-glx-*.c"
-                    exclude "**/cairo-os2-*.c"
-                    exclude "**/cairo-beos-*.cpp"
-                    exclude "**/cairo-pdf-*.c"
-                    exclude "**/cairo-png.c"
-                    exclude "**/cairo-ps-*.c"
-                    exclude "**/cairo-quartz-*.c"
-                    exclude "**/cairo-qt-*.cpp"
-                    exclude "**/cairo-script-*.c"
-                    exclude "**/cairo-svg-*.c"
-                    exclude "**/cairo-tee-*.c"
-                    exclude "**/cairo-wgl-*.c"
-                    exclude "**/cairo-vg-*.c"
-                    exclude "**/cairo-xcb-*.c"
-                    exclude "**/cairo-xlib-*.c"
-                    exclude "**/cairo-xml-*.c"
-                    exclude "**/test-*.c"
-                    exclude "**/cairo-image-mask-compositor.c"
-                    exclude "**/check-has-hidden-symbols.c"
-                    exclude "**/check-link.c"
-                    exclude "**/cairo-drm.c"
-                    exclude "**/cairo-drm-*.c"
-                    exclude "**/cairo-win32-*.c"
-                    exclude "**/cairo-skia-*.cpp"
+    // Encapsulates your external native build configurations.
+    externalNativeBuild {
 
-//Files list should be:
-//                    cairo-analysis-surface.c,
-//                    cairo-arc.c,
-//                    cairo-array.c,
-//                    cairo-atomic.c,
-//                    cairo-base64-stream.c,
-//                    cairo-base85-stream.c,
-//                    cairo-bentley-ottmann.c,
-//                    cairo-bentley-ottmann-rectangular.c,
-//                    cairo-bentley-ottmann-rectilinear.c,
-//                    cairo-botor-scan-converter.c,
-//                    cairo-boxes.c,
-//                    cairo-boxes-intersect.c,
-//                    cairo.c,
-//                    cairo-cache.c,
-//                    cairo-clip.c,
-//                    cairo-clip-boxes.c,
-//                    cairo-clip-polygon.c,
-//                    cairo-clip-region.c,
-//                    cairo-clip-surface.c,
-//                    cairo-clip-tor-scan-converter.c,
-//                    cairo-color.c,
-//                    cairo-composite-rectangles.c,
-//                    cairo-compositor.c,
-//                    cairo-contour.c,
-//                    cairo-damage.c,
-//                    cairo-debug.c,
-//                    cairo-default-context.c,
-//                    cairo-device.c,
-//                    cairo-error.c,
-//                    cairo-fallback-compositor.c,
-//                    cairo-fixed.c,
-//                    cairo-font-face.c,
-//                    cairo-font-face-twin.c,
-//                    cairo-font-face-twin-data.c,
-//                    cairo-font-options.c,
-//                    cairo-freelist.c,
-//                    cairo-freed-pool.c,
-//                    cairo-gstate.c,
-//                    cairo-hash.c,
-//                    cairo-hull.c,
-//                    cairo-image-compositor.c,
-//                    cairo-image-info.c,
-//                    cairo-image-source.c,
-//                    cairo-image-surface.c,
-//                    cairo-line.c,
-//                    cairo-lzw.c,
-//                    cairo-matrix.c,
-//                    cairo-mask-compositor.c,
-//                    cairo-mesh-pattern-rasterizer.c,
-//                    cairo-mempool.c,
-//                    cairo-misc.c,
-//                    cairo-mono-scan-converter.c,
-//                    cairo-mutex.c,
-//                    cairo-no-compositor.c,
-//                    cairo-observer.c,
-//                    cairo-output-stream.c,
-//                    cairo-paginated-surface.c,
-//                    cairo-path-bounds.c,
-//                    cairo-path.c,
-//                    cairo-path-fill.c,
-//                    cairo-path-fixed.c,
-//                    cairo-path-in-fill.c,
-//                    cairo-path-stroke.c,
-//                    cairo-path-stroke-boxes.c,
-//                    cairo-path-stroke-polygon.c,
-//                    cairo-path-stroke-traps.c,
-//                    cairo-path-stroke-tristrip.c,
-//                    cairo-pattern.c,
-//                    cairo-pen.c,
-//                    cairo-polygon.c,
-//                    cairo-polygon-intersect.c,
-//                    cairo-polygon-reduce.c,
-//                    cairo-raster-source-pattern.c,
-//                    cairo-recording-surface.c,
-//                    cairo-rectangle.c,
-//                    cairo-rectangular-scan-converter.c,
-//                    cairo-region.c,
-//                    cairo-rtree.c,
-//                    cairo-scaled-font.c,
-//                    cairo-shape-mask-compositor.c,
-//                    cairo-slope.c,
-//                    cairo-spans.c,
-//                    cairo-spans-compositor.c,
-//                    cairo-spline.c,
-//                    cairo-stroke-dash.c,
-//                    cairo-stroke-style.c,
-//                    cairo-surface.c,
-//                    cairo-surface-clipper.c,
-//                    cairo-surface-fallback.c,
-//                    cairo-surface-observer.c,
-//                    cairo-surface-offset.c,
-//                    cairo-surface-snapshot.c,
-//                    cairo-surface-subsurface.c,
-//                    cairo-surface-wrapper.c,
-//                    cairo-tag-attributes.c,
-//                    cairo-tag-stack.c,
-//                    cairo-time.c,
-//                    cairo-tor-scan-converter.c,
-//                    cairo-tor22-scan-converter.c,
-//                    cairo-toy-font-face.c,
-//                    cairo-traps.c,
-//                    cairo-traps-compositor.c,
-//                    cairo-tristrip.c,
-//                    cairo-unicode.c,
-//                    cairo-user-font.c,
-//                    cairo-version.c,
-//                    cairo-wideint.c
-                }
-            }
+        // Encapsulates your CMake build configurations.
+        cmake {
+            // Provides a relative path to your CMake build script.
+            path "CMakeLists.txt"
         }
     }
 }
@@ -217,17 +46,19 @@ repositories {
     }
 }
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'org.pixman:pixman:+'
+    implementation 'io.github.igagis:pixman:+'
 }
 
 
 //===================================
 //=== Extract NDK files from AARs ===
 
+// This is needed to be able to write "configurations.implementation.each" below.
+configurations.implementation.setCanBeResolved(true)
+
 task extractNDKLibs {
     doLast {
-        configurations.compile.each {
+        configurations.implementation.each {
             def file = it.absoluteFile
             copy {
                 from zipTree(file)
@@ -237,10 +68,11 @@ task extractNDKLibs {
         }
     }
 }
-build.dependsOn('extractNDKLibs')
+
 tasks.whenTaskAdded { task ->
-    if (task.name.startsWith('compile')) {
-        task.dependsOn('extractNDKLibs')
+    logger.info('task added')
+    if (task.name.startsWith('externalNativeBuild')) {
+        task.dependsOn extractNDKLibs
     }
 }
 
@@ -248,7 +80,7 @@ tasks.whenTaskAdded { task ->
 
 //=================================
 //=== pack library files to aar ===
-
+//This stuff re-packs the release AAR file adding headers and static libs to there, but removing all shared (.so) libs, as we don't need them. The resulting AAR is put to the project root directory and can be uploaded to Maven along with POM file (you need to write one by hand).
 
 def aarName = name
 
@@ -262,24 +94,18 @@ task copyNdkLibsToAAR(type: Zip) {
     exclude('**/*.so') //do not include shared libraries into final AAR
     from("../../COPKG") {
         include('**/*.h')
-//        exclude('makefile')
-//        exclude('soname.txt')
-//        exclude('**/*.cpp')
-//        exclude('**/*.c')
         into('ndkLibs/include/')
     }
     from("../../src") {
         include('**/*.h')
-//        exclude('makefile')
-//        exclude('soname.txt')
-//        exclude('**/*.cpp')
-//        exclude('**/*.c')
         into('ndkLibs/include/cairo')
     }
-    from("build/intermediates/binaries/debug/lib"){
+    from("build/intermediates/cmake/debug/obj"){
         include('**/*.a')
         into('ndkLibs')
     }
 }
 
-build.finalizedBy('copyNdkLibsToAAR')
+afterEvaluate {
+    bundleReleaseAar.finalizedBy copyNdkLibsToAAR
+}
