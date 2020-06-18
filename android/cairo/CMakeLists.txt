@@ -124,22 +124,25 @@ set(srcs
         ../../src/cairo-wideint.c
     )
 
-link_directories( build/ndkLibs/${ANDROID_ABI}/ )
+include (${ANDROID_GRADLE_NATIVE_BUNDLE_PLUGIN_MK})
+include_directories( build/ndkLibs/include/pixman ../../COPKG/cairo)
 
-add_library( # Specifies the name of the library.
-             ${name}
+add_library(
+        # Specifies the name of the library.
+        ${name}
 
-             # Sets the library as a shared library.
-             STATIC
+        # Sets the library as a shared library.
+        STATIC
 
-             # Provides a relative path to your source file(s).
-             ${srcs} )
+        # Provides a relative path to your source file(s).
+        ${srcs}
+    )
 
-include_directories( build/ndkLibs/include/ build/ndkLibs/include/pixman ../../COPKG/cairo)
+
 
 add_definitions(-DCAIRO_NO_MUTEX=1 -DHAVE_STDINT_H -DHAVE_UINT64_T)
 
 target_link_libraries(
         ${name}
-        android log
+        android log ${ANDROID_GRADLE_NATIVE_MODULES}
     )
