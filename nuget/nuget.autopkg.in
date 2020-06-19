@@ -39,7 +39,7 @@ nuget{
 	files {
 		include: {
 			"..\src\*.h";
-			"..\COPKG\cairo\*.h";
+//			"..\COPKG\cairo\*.h";
 		};
 
 		//==== v140 tools ====
