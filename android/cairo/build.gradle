@@ -50,7 +50,7 @@ repositories {
     }
 }
 dependencies {
-    implementation 'io.github.igagis:pixman:+'
+    implementation 'io.github.igagis:pixman:0.32.4.9'
 }
 
 // copy and rename release AAR to unified name

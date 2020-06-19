@@ -125,7 +125,7 @@ set(srcs
     )
 
 include (${ANDROID_GRADLE_NATIVE_BUNDLE_PLUGIN_MK})
-include_directories( build/ndkLibs/include/pixman ../../COPKG/cairo)
+include_directories( build/nativeLib/io.github.igagis/pixman/jni/include/pixman/ ../../COPKG/cairo)
 
 add_library(
         # Specifies the name of the library.
